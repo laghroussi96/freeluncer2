@@ -27,10 +27,9 @@ public class Langueskill implements Serializable {
     private String niveau;
     @ManyToOne
     private Developpeur developpeur;
-    @OneToOne
+    @ManyToOne
     private Langue langue;
-    @OneToOne
-    private Mission mission;
+    
 
     public String getNiveau() {
         return niveau;
@@ -56,16 +55,6 @@ public class Langueskill implements Serializable {
         this.langue = langue;
     }
 
-    public Mission getMission() {
-        return mission;
-    }
-
-    public void setMission(Mission mission) {
-        this.mission = mission;
-    }
-
-    
-    
     public Long getId() {
         return id;
     }

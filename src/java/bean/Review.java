@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,9 +25,20 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int score;
-    @OneToOne
-    private Mission mission;
+    @ManyToOne
+    private Developpeur developpeur;
+   
 
+    public Developpeur getDeveloppeur() {
+        return developpeur;
+    }
+
+    public void setDeveloppeur(Developpeur developpeur) {
+        this.developpeur = developpeur;
+    }
+
+    
+   
     public int getScore() {
         return score;
     }
@@ -34,15 +46,6 @@ public class Review implements Serializable {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public Mission getMission() {
-        return mission;
-    }
-
-    public void setMission(Mission mission) {
-        this.mission = mission;
-    }
-
     
     public Long getId() {
         return id;

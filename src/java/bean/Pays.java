@@ -18,33 +18,41 @@ import javax.persistence.OneToMany;
  * @author fatima
  */
 @Entity
-public class Type implements Serializable {
+public class Pays implements Serializable {
+
+   
+
+    
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
-    @OneToMany(mappedBy = "type")
-    private List<Mission> missions;
+    private String nom;
+    @OneToMany(mappedBy = "pays")
+    private List<Developpeur> developpeurs;
+     @OneToMany(mappedBy = "pays")
+    private List<User> users;
 
-    public List<Mission> getMissions() {
-        return missions;
+    public List<Developpeur> getDeveloppeurs() {
+        return developpeurs;
     }
 
-    public void setMissions(List<Mission> missions) {
-        this.missions = missions;
+    public void setDeveloppeurs(List<Developpeur> developpeurs) {
+        this.developpeurs = developpeurs;
     }
 
     
     
-    public String getLibelle() {
-        return libelle;
+    public String getNom() {
+        return nom;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
+    
+    
 
     public Long getId() {
         return id;
@@ -64,10 +72,10 @@ public class Type implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Type)) {
+        if (!(object instanceof Pays)) {
             return false;
         }
-        Type other = (Type) object;
+        Pays other = (Pays) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +84,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Type[ id=" + id + " ]";
+        return "bean.Payee[ id=" + id + " ]";
     }
-
+    
 }

@@ -24,12 +24,13 @@ public class Technologieskill implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Developpeur developpeur;
-    @OneToOne
-    private Technologie technologie;
     private String niveau;
     private int nbrAnneExper;
+    @ManyToOne
+    private Developpeur developpeur;
+    @ManyToOne
+    private Technologie technologie;
+    
 
     public String getNiveau() {
         return niveau;

@@ -6,10 +6,12 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +25,18 @@ public class Diplome implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String niveau;
+    @OneToMany(mappedBy = "diplome")
+    private List<Developpeur> developpeurs;
+    @OneToMany(mappedBy = "diplome")
+    private List<Mission> missions;
+
+    public List<Developpeur> getDeveloppeurs() {
+        return developpeurs;
+    }
+
+    public void setDeveloppeurs(List<Developpeur> developpeurs) {
+        this.developpeurs = developpeurs;
+    }
 
     public String getNiveau() {
         return niveau;
@@ -31,8 +45,6 @@ public class Diplome implements Serializable {
     public void setNiveau(String niveau) {
         this.niveau = niveau;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -66,5 +78,5 @@ public class Diplome implements Serializable {
     public String toString() {
         return "bean.Diplome[ id=" + id + " ]";
     }
-    
+
 }

@@ -18,32 +18,30 @@ import javax.persistence.OneToMany;
  * @author fatima
  */
 @Entity
-public class Type implements Serializable {
+public class Devise implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
-    @OneToMany(mappedBy = "type")
-    private List<Mission> missions;
+    private String nom;
+    @OneToMany(mappedBy = "devise")
+    private List<Budget> budgets;
 
-    public List<Mission> getMissions() {
-        return missions;
+    public String getNom() {
+        return nom;
     }
 
-    public void setMissions(List<Mission> missions) {
-        this.missions = missions;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    
-    
-    public String getLibelle() {
-        return libelle;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
     public Long getId() {
@@ -64,10 +62,10 @@ public class Type implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Type)) {
+        if (!(object instanceof Devise)) {
             return false;
         }
-        Type other = (Type) object;
+        Devise other = (Devise) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +74,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Type[ id=" + id + " ]";
+        return "bean.Devise[ id=" + id + " ]";
     }
 
 }

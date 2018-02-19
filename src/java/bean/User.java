@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -30,9 +31,21 @@ public class User implements Serializable {
     private String prenom;
     private double motPasse;
     private double tel;
+    @ManyToOne
+    private Pays pays;
      @OneToMany(mappedBy = "user")
     private List<Mission> missions;
 
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+     
+     
     public String getNom() {
         return nom;
     }

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -20,8 +21,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Developpeur implements Serializable {
 
-   
-
     private static final long serialVersionUID = 1L;
     @Id
     private String email;
@@ -29,11 +28,45 @@ public class Developpeur implements Serializable {
     private String prenom;
     private double motPasse;
     private double tel;
-     @OneToMany(mappedBy = "developpeur")
+      
+
+    @ManyToOne
+    private Diplome diplome;
+    @ManyToOne
+    private Pays pays;
+    @OneToMany(mappedBy = "developpeur")
     private List<Technologieskill> technologieskills;
+    @OneToMany(mappedBy = "developpeur")
+    private List<Review> reviews;
 
     @OneToMany(mappedBy = "developpeur")
     private List<Langueskill> langueskills;
+
+    public Diplome getDiplome() {
+        return diplome;
+    }
+
+    public void setDiplome(Diplome diplome) {
+        this.diplome = diplome;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    
+    
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public List<Technologieskill> getTechnologieskills() {
         return technologieskills;
@@ -51,8 +84,6 @@ public class Developpeur implements Serializable {
         this.langueskills = langueskills;
     }
 
-    
-    
     public double getTel() {
         return tel;
     }
@@ -61,7 +92,6 @@ public class Developpeur implements Serializable {
         this.tel = tel;
     }
 
-    
     public String getNom() {
         return nom;
     }
@@ -86,8 +116,6 @@ public class Developpeur implements Serializable {
         this.motPasse = motPasse;
     }
 
-    
-    
     public String getEmail() {
         return email;
     }
@@ -120,5 +148,5 @@ public class Developpeur implements Serializable {
     public String toString() {
         return "bean.Developpeur[ id=" + email + " ]";
     }
-    
+
 }

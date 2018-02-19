@@ -6,10 +6,12 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +25,16 @@ public class Technologie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom;
+    @OneToMany(mappedBy = "technologie")
+    private List<Technologieskill> technologieskills;
+
+    public List<Technologieskill> getTechnologieskills() {
+        return technologieskills;
+    }
+
+    public void setTechnologieskills(List<Technologieskill> technologieskills) {
+        this.technologieskills = technologieskills;
+    }
 
     public String getNom() {
         return nom;
@@ -32,7 +44,6 @@ public class Technologie implements Serializable {
         this.nom = nom;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -65,5 +76,5 @@ public class Technologie implements Serializable {
     public String toString() {
         return "bean.Technologie[ id=" + id + " ]";
     }
-    
+
 }

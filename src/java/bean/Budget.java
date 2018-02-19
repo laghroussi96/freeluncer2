@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,15 +19,44 @@ import javax.persistence.OneToMany;
  * @author fatima
  */
 @Entity
-public class Type implements Serializable {
+public class Budget implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String libelle;
-    @OneToMany(mappedBy = "type")
+    private double min;
+    private double max;
+    @ManyToOne
+    private Devise devise;
+    @OneToMany(mappedBy = "budget")
     private List<Mission> missions;
+
+    public Devise getDevise() {
+        return devise;
+    }
+
+    public void setDevise(Devise devise) {
+        this.devise = devise;
+    }
+
+    
+    
+    public double getMin() {
+        return min;
+    }
+
+    public void setMin(double min) {
+        this.min = min;
+    }
+
+    public double getMax() {
+        return max;
+    }
+
+    public void setMax(double max) {
+        this.max = max;
+    }
 
     public List<Mission> getMissions() {
         return missions;
@@ -38,14 +68,6 @@ public class Type implements Serializable {
 
     
     
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
     public Long getId() {
         return id;
     }
@@ -64,10 +86,10 @@ public class Type implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Type)) {
+        if (!(object instanceof Budget)) {
             return false;
         }
-        Type other = (Type) object;
+        Budget other = (Budget) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +98,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Type[ id=" + id + " ]";
+        return "bean.Budget[ id=" + id + " ]";
     }
 
 }

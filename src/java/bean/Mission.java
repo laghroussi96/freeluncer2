@@ -23,40 +23,48 @@ import javax.persistence.OneToOne;
 public class Mission implements Serializable {
 
    
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String diplomMin;
     private String text;
-    private double budget;
-    private String devise;
+   private String commentaire;
     @ManyToOne
     private User user;
-    @OneToOne
+    @ManyToOne
     private Type type;
     @ManyToOne
     private Langue langue;
-    @OneToOne
+    @ManyToOne
     private Diplome diplome;
+    @ManyToOne
+    private Budget budget;
+    @OneToMany(mappedBy = "mission")
+    private List<Review> reviews;
      @OneToMany(mappedBy = "mission")
     private List<Technologiemission> technologiemissions;
+      
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
     public List<Technologiemission> getTechnologiemissions() {
         return technologiemissions;
     }
 
     public void setTechnologiemissions(List<Technologiemission> technologiemissions) {
         this.technologiemissions = technologiemissions;
-    }
-
-    public String getDiplomMin() {
-        return diplomMin;
-    }
-
-    public void setDiplomMin(String diplomMin) {
-        this.diplomMin = diplomMin;
     }
 
     public String getText() {
@@ -67,21 +75,21 @@ public class Mission implements Serializable {
         this.text = text;
     }
 
-    public double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
-    public String getDevise() {
-        return devise;
-    }
-
-    public void setDevise(String devise) {
-        this.devise = devise;
-    }
+//    public double getBudget() {
+//        return budget;
+//    }
+//
+//    public void setBudget(double budget) {
+//        this.budget = budget;
+//    }
+//
+//    public String getDevise() {
+//        return devise;
+//    }
+//
+//    public void setDevise(String devise) {
+//        this.devise = devise;
+//    }
 
     public User getUser() {
         return user;
